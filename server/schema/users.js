@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const UserSchema = new Schema({
+  _id: ObjectId,
   username: String,
   name: {
     type: String,
@@ -16,10 +17,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  // isValid: {
-  //   type: Boolean,
-  //   default: false
-  // }
+  isValid: {
+    type: Boolean,
+    default: false
+  }
 
 });
 

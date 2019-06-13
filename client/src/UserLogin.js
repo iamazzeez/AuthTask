@@ -25,26 +25,26 @@ class Login extends Component {
   console.log(email, password, this.props.login)
 
  
-// fetch('http://localhost:5000/graphql/', {
-//   method: 'POST',
-//   body: JSON.stringify(requestBody),
-//   headers: {
-//     'Content-Type': 'application/json',
+fetch('http://localhost:5000/get', {
+  method: 'GET',
+  body: JSON.stringify(requestBody),
+  headers: {
+    'Content-Type': 'application/json',
 
-//   }
-// }).then(res => {
-//   if(res.status !== 200 && res.status !== 201){
-//     throw new Error('Failed!')
-//   }
-//   res.json();
+  }
+}).then(res => {
+  if(res.status !== 200 && res.status !== 201){
+    throw new Error('Failed!')
+  }
+  res.json();
     
-// }).then(resData => {
-//   console.log(resData);
-// })
+}).then(resData => {
+  console.log(resData);
+})
 
-// .catch(err => {
-//   console.log(err)
-// }) 
+.catch(err => {
+  console.log(err)
+}) 
 }
 
 

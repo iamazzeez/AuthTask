@@ -11,8 +11,11 @@ app.use(bodyParser.urlencoded({
 app.use(cors())
 app.use(bodyParser.json());
 
+const userRoutes = require('../server/api/userRoutes');
+const userCreate = require('../server/api/createUser');
+const userUpdate = require('../server/api/updateUser');
+const userDelete = require('../server/api/deleteUser');
 
-//Create User
 app.post('/create', (req,res, next) => {
   const user = new UserModel({
       _id: new mongoose.Types.ObjectId(),
@@ -27,13 +30,16 @@ app.post('/create', (req,res, next) => {
       
 })
 
-
+app.use('/users', userRoutes);
+app.use('/users/create', userCreate);
+app.use('/users/update', userUpdate);
+app.use('/users/delete', userDelete);
 
 
 
 app.get('/', (req,res) => res.send('Hello'));
 
-//Connecting to db
+
 const dbURI = "mongodb+srv://admin:admin@cluster0-u6qx9.mongodb.net/test?retryWrites=true&w=majority"
 
 const options = {

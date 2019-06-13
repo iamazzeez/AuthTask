@@ -84,6 +84,33 @@ class Signup extends Component {
       // handle actual form submission here
       console.log(this.state.email, this.state.name, this.state.username, this.state.password)
 
+      const requestBody = {           
+        username: this.state.username ,
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+        }
+       
+fetch('http://localhost:5000/create', {
+  method: 'POST',
+  body: JSON.stringify(requestBody),
+  headers: {
+    'Content-Type': 'application/json',
+
+  }
+}).then(res => {
+  if(res.status !== 200 && res.status !== 201){
+    throw new Error('Failed!')
+  } res.json();
+    
+}).then(resData => {
+  console.log(resData);
+})
+
+.catch(err => {
+  console.log(err)
+}) 
+
     }
   }
 
