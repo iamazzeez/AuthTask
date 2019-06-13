@@ -82,6 +82,8 @@ class Signup extends Component {
 
     if (validation.isValid) {
       // handle actual form submission here
+      console.log(this.state.email, this.state.name, this.state.username, this.state.password)
+
     }
   }
 

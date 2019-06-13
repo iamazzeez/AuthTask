@@ -10,6 +10,23 @@ app.all('*', function(req, res, next) {
     next();
   });
 userRoutes.route('/:username')
+.post( async function(req, res) {
+    try{
+        const UserData = new UserModel({
+            _id: req.params.username,
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        
+    });
+        await UserData.save();
+        return res.send("Saved user Data")
+    }
+    catch (error) {
+        
+        return res.send(error)
+    }
+})
 .get( function (req, res) {
     UserModel.findById( req.params.username, function (err, user) {
         if (err) res.send (err);

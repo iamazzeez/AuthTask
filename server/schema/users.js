@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
+  username: String,
   name: {
     type: String,
     required: true,
@@ -18,10 +16,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  isValid: {
-    type: Boolean,
-    default: false
-  }
+  // isValid: {
+  //   type: Boolean,
+  //   default: false
+  // }
 
 });
 

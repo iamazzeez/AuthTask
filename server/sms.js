@@ -29,5 +29,5 @@ req.write(JSON.stringify({ sender: 'SOCKET',
   route: '4',
   country: '91',
   sms: 
-   [ { message: 'Hello', to: [ '9606231433', ] } ] }));
+   [ { message: 'Hello, offer is limited hurry up!', to: [ '8309595695', ] } ] }));
 req.end();
