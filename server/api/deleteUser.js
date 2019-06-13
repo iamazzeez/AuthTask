@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const UserModel = require('../schema/users')
 
-router.post('/', function(req, res) {
+router.delete('/', function(req, res) {
           
          UserModel.remove({ _id: req.body.username }, function(err) {
             if (!err) {

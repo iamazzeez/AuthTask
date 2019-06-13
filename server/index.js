@@ -8,9 +8,21 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
 app.use(cors())
 app.use(bodyParser.json());
+
+const userRoutes = require('../server/api/userRoutes');
+const userCreate = require('../server/api/createUser');
+const userUpdate = require('../server/api/updateUser');
+const userDelete = require('../server/api/deleteUser');
+
+app.use('/users', userRoutes);
+app.use('/users/create', userCreate);
+app.use('/users/update', userUpdate);
+app.use('/users/delete', userDelete);
+
+
+
 app.get('/', (req,res) => res.send('Hello'));
 
 

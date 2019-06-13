@@ -5,11 +5,10 @@ const UserModel = require('../schema/users')
 router.post('/', async function(req, res) {
     try{
         const UserData = new UserModel({
-            _id: req.body.username,
+            _id: req.params.username,
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
-            confirmpassword: req.body.confirmpassword,
+            password: req.body.password
         
     });
         await UserData.save();
