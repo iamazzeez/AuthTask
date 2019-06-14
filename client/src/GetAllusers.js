@@ -30,11 +30,7 @@ export default class GetAllusers extends Component {
           
            console.log(data)
               return this.setState({ data: data })
-            //     username: data.data.username,
-            //     name: data.data.name,
-            //     email: data.data.email,
-            //     password: data.data.password
-            //   })
+          
         
           })
         }
@@ -43,9 +39,9 @@ export default class GetAllusers extends Component {
     render() {
        
             return (
-                <div>
+                <div className='dispaly-4 my-3 '>
                      {Object.values(this.state.data).map(user => (   
-                         <div>
+                    <div className="container"style={{maxWidth: '25rem'}} >
                     <h5>Username: {user.username}</h5>
                     <h5>Name: {user.name}</h5>
                     <h5>Email: {user.email}</h5>
