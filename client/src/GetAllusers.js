@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class GetAllusers extends Component {
     state = {
@@ -50,6 +51,9 @@ export default class GetAllusers extends Component {
                     <br />
                     </div>
                     ))}
+                    <div className= 'container' style={{maxWidth: '25rem'}}>
+                     <Link  className="btn btn-primary " to="/AdminLogin">Logout</Link>
+                     </div>
                 </div>
             )
             
