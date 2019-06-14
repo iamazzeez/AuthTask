@@ -99,10 +99,11 @@ render() {
   <div className="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" ref={this.emailEl} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+    <small id="emailHelp" className="form-text text-muted">Use: abrar.md27@gmail.com</small>
   </div>
   <div className="form-group">
     <label for="exampleInputPassword1">Password</label>
+    <small id="emailHelp" className="form-text text-muted">Use: 123</small>
     <input type="password" ref={this.passwordEl} className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
   </div>
   <div className='text-center'>
