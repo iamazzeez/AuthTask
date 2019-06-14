@@ -101,13 +101,12 @@ fetch('http://localhost:5000/create', {
 }).then(res => {
   if(res.status !== 200 && res.status !== 201){
     throw new Error('Failed!')
-  } res.json();
-    
-}).then(resData => {
+  } 
+  res.json().then(resData => {
   alert('User created')
   console.log(resData);
 })
-
+})
 .catch(err => {
   console.log(err)
 }) 
