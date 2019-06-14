@@ -100,9 +100,9 @@ module.exports = function(app) {
         if (req.body.password != user.password) {
           return res.send({ error: true, message: "Wrong password!" });
         }
-        // if(!user.isValid){
-        //   res.send({error: true, message: "You are not verified yet"})
-        // }
+        if(!user.isValid){
+          res.send({error: true, message: "You are not verified yet"})
+        }
         req.session.user = user;
         req.session.isLoggedIn = true;
         return res.send({ message: "You are signed in", data: user });
@@ -140,9 +140,52 @@ module.exports = function(app) {
   }
   app.post("/api/getuser", getUserDetails);
 
+   //------------------------------------------------------
+   function showUsers(req, res) {
+    User.find()
+      .then(users => {
+        res.json(users);
+      })
+      .catch(error => {
+        res.json(error);
+      });
+  }
+  app.get("/api/showusers", showUsers);
+
 
   app.get("/api/logout", (req, res) => {
     req.session.destroy();
     res.send({ message: "Logged out!" });
   });
+
+
+//Admin Login
+function loginAdmin(req, res) {
+  var errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.send({ errors: errors.mapped() });
+  }
+  User.findOne({
+    email: req.body.email
+  })
+    .then(function(user) {
+      if (!user) {
+        return res.send({ error: true, message: "User does not exist!" });
+      }
+      if (req.body.password != user.password) {
+        return res.send({ error: true, message: "Wrong password!" });
+      }
+      // if(!user.isValid){
+      //   res.send({error: true, message: "You are not verified yet"})
+      // }
+      req.session.user = user;
+      req.session.isLoggedIn = true;
+      return res.send({ message: "You are signed in", data: user });
+      res.send(user);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+app.post("/api/Adminlogin", loginAdmin);
 };

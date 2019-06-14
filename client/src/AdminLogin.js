@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
-
-class Login extends Component {
+class AdminLogin extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      password: "",
+      email: "",
+      error: null,
+      valerrors: null
+    };
     this.emailEl = React.createRef();
     this.passwordEl = React.createRef();
+   
 
 
   }
@@ -23,10 +31,14 @@ class Login extends Component {
 
 
   console.log(email, password, this.props.login)
+  const loginDetails = {
+    password: password,
+    email: email,
+  }
 
  
-// fetch('http://localhost:5000/graphql/', {
-//   method: 'POST',
+// fetch('http://localhost:5000/get', {
+//   method: 'GET',
 //   body: JSON.stringify(requestBody),
 //   headers: {
 //     'Content-Type': 'application/json',
@@ -45,6 +57,35 @@ class Login extends Component {
 // .catch(err => {
 //   console.log(err)
 // }) 
+fetch('http://localhost:5000/api/Adminlogin', {
+  method: 'POST',
+  body: JSON.stringify(loginDetails),
+  headers: {
+    'Content-Type': 'application/json',
+
+  }
+})
+.then(
+  (response) => {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+      return;
+    }
+
+    // Examine the text in the response
+    response.json().then((data) => {
+      if (data.error) {
+        return this.setState({ error: data.message });
+      }
+    
+     
+      console.log(data);
+      return (window.location = "/users/Admin");
+      // <Redirect to = `/user/${data.data.username}`/>
+    })
+  }
+  )
 }
 
 
@@ -52,8 +93,9 @@ render() {
   return (
 
     <div className="container"style={{maxWidth: '25rem'}} >
+       
       <form onSubmit={this.handleLogin}>
-      <h1 className='dispaly-4 my-3 text-center' >Admin Login</h1>
+      <h1 className='dispaly-4 my-3 text-center' > Admin Login</h1>
   <div className="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" ref={this.emailEl} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
@@ -66,6 +108,8 @@ render() {
   <div className='text-center'>
   
 <button type='submit'class="btn btn-primary">Login</button>
+<br />
+{this.state.error && <p  className='my-3 text-center'>{this.state.error}</p>}
 
 
   
@@ -78,4 +122,4 @@ render() {
 
 
 
-export default Login
+export default AdminLogin
