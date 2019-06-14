@@ -49,18 +49,28 @@ class Login extends Component {
 // .catch(err => {
 //   console.log(err)
 // }) 
-axios
-.post("/api/login", loginDetails)
-.then(res => {
-  // if (res.data.error) {
-  //   return this.setState({ error: res.data.message });
-  // }
-  // if (res.data.errors) {
-  //   return this.setState({ valerrors: res.data.errors });
-  // }
-  // return (window.location = "/");
-});
+fetch('http://localhost:5000/api/login', {
+  method: 'POST',
+  body: JSON.stringify(loginDetails),
+  headers: {
+    'Content-Type': 'application/json',
 
+  }
+})
+.then(
+  function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+      return;
+    }
+
+    // Examine the text in the response
+    response.json().then(function(data) {
+      alert(data.message);
+    });
+  }
+  )
 }
 
 

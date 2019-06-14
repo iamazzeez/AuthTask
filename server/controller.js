@@ -95,10 +95,10 @@ module.exports = function(app) {
     })
       .then(function(user) {
         if (!user) {
-          return res.json({ error: true, message: "User does not exist!" });
+          return res.send({ error: true, message: "User does not exist!" });
         }
         if (req.body.password != user.password) {
-          return res.json({ error: true, message: "Wrong password!" });
+          return res.send({ error: true, message: "Wrong password!" });
         }
         if(!user.isValid){
           res.send({message: "You are not verified yet"})
