@@ -125,57 +125,6 @@ module.exports = function(app) {
 
   //--------------------------------------
 
-  const postValidation = [
-    check("post")
-      .not()
-      .isEmpty()
-      .withMessage("Please write something.")
-  ];
-
-  function addPost(req, res) {
-    var errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.send({ errors: errors.mapped() });
-    }
-    var post = new Post(req.body);
-    if (req.session.user) {
-      post.user = req.session.user._id;
-      post
-        .save()
-        .then(post => {
-          res.json(post);
-        })
-        .catch(error => {
-          res.json(error);
-        });
-    } else {
-      return res.send({ error: "You are not logged in!" });
-    }
-  }
-  app.post("/api/addpost", postValidation, addPost);
-  //----------------------------------------------
-  app.post("/api/postupvote/:id", (req, res) => {
-    Post.findById(req.params.id).then(function(post) {
-      post.vote = post.vote + 1;
-      post.save().then(function(post) {
-        res.send(post);
-      });
-    });
-  });
-
-  //------------------------------------------------------
-  function showPosts(req, res) {
-    Post.find()
-      .populate("user", ["username", "email"])
-      .sort({ vote: "desc" })
-      .then(post => {
-        res.json(post);
-      })
-      .catch(error => {
-        res.json(error);
-      });
-  }
-  app.get("/api/showposts", showPosts);
 
   app.get("/api/logout", (req, res) => {
     req.session.destroy();
