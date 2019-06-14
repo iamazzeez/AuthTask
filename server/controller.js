@@ -188,4 +188,54 @@ function loginAdmin(req, res) {
     });
 }
 app.post("/api/Adminlogin", loginAdmin);
+
+
+
+// Delete Task
+app.delete("/api/task/:id", function(req, res, next) {
+  User.remove({ username: req.params.id }, function(
+    err,
+    task
+  ) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(task);
+  });
+});
+
+
+// Update Task
+app.put("/api/task/:id", function(req, res, next) {
+  // var task = req.body;
+  // var updTask = {};
+
+  // if (task.isDone) {
+  //   updTask.isDone = task.isDone;
+  // }
+
+  // if (task.title) {
+  //   updTask.title = task.title;
+  // }
+
+  // if (!updTask) {
+  //   res.status(400);
+  //   res.json({
+  //     error: "Bad Data"
+  //   });
+  // } else {
+    User.updateOne(
+      { username: req.params.id},
+      req.body,
+      {},
+      function(err, task) {
+        if (err) {
+          res.send(err);
+        }
+        res.json(task);
+      }
+    );
+  // }
+});
 };
+
