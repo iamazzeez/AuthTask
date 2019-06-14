@@ -4,6 +4,7 @@ import Route from 'react-router-dom/Route';
 import Signup from './Signup';
 import Login from './UserLogin';
 import AdminLogin from "./AdminLogin";
+import User from "./User";
 
 
 class App extends Component {
@@ -42,7 +43,7 @@ class App extends Component {
         <Route path="/" exact strict component={Signup} />
         <Route path="/AdminLogin" exact strict component={AdminLogin} />
         <Route path="/UserLogin" exact strict component={Login} />
-        <Route path="/User/:id" exact strict component={Login} />
+        <Route path="/:id" exact strict component={User} />
         </Switch>
   </div>
       </Router>

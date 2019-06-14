@@ -100,12 +100,12 @@ module.exports = function(app) {
         if (req.body.password != user.password) {
           return res.send({ error: true, message: "Wrong password!" });
         }
-        if(!user.isValid){
-          res.send({error: true, message: "You are not verified yet"})
-        }
+        // if(!user.isValid){
+        //   res.send({error: true, message: "You are not verified yet"})
+        // }
         req.session.user = user;
         req.session.isLoggedIn = true;
-        return res.send({ message: "You are signed in" });
+        return res.send({ message: "You are signed in", data: user });
         res.send(user);
       })
       .catch(function(error) {
@@ -124,6 +124,21 @@ module.exports = function(app) {
   app.get("/api/isloggedin", isLoggedIn);
 
   //--------------------------------------
+  //get user
+  function getUserDetails(req, res) {
+    User.findOne({
+      username: req.body.username
+    })
+      .then(function(user) {
+    
+        return res.send({ message: "You are signed in", data: user });
+        res.send(user);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  app.post("/api/getuser", getUserDetails);
 
 
   app.get("/api/logout", (req, res) => {
