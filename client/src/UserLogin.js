@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      password: "",
+      email: "",
+      error: null,
+      valerrors: null
+    };
     this.emailEl = React.createRef();
     this.passwordEl = React.createRef();
+   
 
 
   }
@@ -58,7 +66,7 @@ fetch('http://localhost:5000/api/login', {
   }
 })
 .then(
-  function(response) {
+  (response) => {
     if (response.status !== 200) {
       console.log('Looks like there was a problem. Status Code: ' +
         response.status);
@@ -66,9 +74,15 @@ fetch('http://localhost:5000/api/login', {
     }
 
     // Examine the text in the response
-    response.json().then(function(data) {
-      alert(data.message);
-    });
+    response.json().then((data) => {
+      if (data.error) {
+        return this.setState({ error: data.message });
+      }
+    
+     
+      console.log(data.message);
+      return (window.location = "/");
+    })
   }
   )
 }
@@ -78,6 +92,7 @@ render() {
   return (
 
     <div className="container"style={{maxWidth: '25rem'}} >
+       
       <form onSubmit={this.handleLogin}>
       <h1 className='dispaly-4 my-3 text-center' > User Login</h1>
   <div className="form-group">
@@ -92,6 +107,8 @@ render() {
   <div className='text-center'>
   
 <button type='submit'class="btn btn-primary">Login</button>
+<br />
+{this.state.error && <p  className='my-3 text-center'>{this.state.error}</p>}
 
 
   

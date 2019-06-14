@@ -42,6 +42,7 @@ class App extends Component {
         <Route path="/" exact strict component={Signup} />
         <Route path="/AdminLogin" exact strict component={AdminLogin} />
         <Route path="/UserLogin" exact strict component={Login} />
+        <Route path="/User/:id" exact strict component={Login} />
         </Switch>
   </div>
       </Router>
