@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from './FormValidator';
-import {Link} from 'react-router-dom';
+import {Link, Prompt} from 'react-router-dom';
 
 class Signup extends Component {
   constructor() {
@@ -104,6 +104,7 @@ fetch('http://localhost:5000/create', {
   } res.json();
     
 }).then(resData => {
+  alert('User created')
   console.log(resData);
 })
 

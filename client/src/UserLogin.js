@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props){
@@ -23,28 +23,44 @@ class Login extends Component {
 
 
   console.log(email, password, this.props.login)
+  const loginDetails = {
+    password: password,
+    email: email,
+  }
 
  
-fetch('http://localhost:5000/get', {
-  method: 'GET',
-  body: JSON.stringify(requestBody),
-  headers: {
-    'Content-Type': 'application/json',
+// fetch('http://localhost:5000/get', {
+//   method: 'GET',
+//   body: JSON.stringify(requestBody),
+//   headers: {
+//     'Content-Type': 'application/json',
 
-  }
-}).then(res => {
-  if(res.status !== 200 && res.status !== 201){
-    throw new Error('Failed!')
-  }
-  res.json();
+//   }
+// }).then(res => {
+//   if(res.status !== 200 && res.status !== 201){
+//     throw new Error('Failed!')
+//   }
+//   res.json();
     
-}).then(resData => {
-  console.log(resData);
-})
+// }).then(resData => {
+//   console.log(resData);
+// })
 
-.catch(err => {
-  console.log(err)
-}) 
+// .catch(err => {
+//   console.log(err)
+// }) 
+axios
+.post("/api/login", loginDetails)
+.then(res => {
+  // if (res.data.error) {
+  //   return this.setState({ error: res.data.message });
+  // }
+  // if (res.data.errors) {
+  //   return this.setState({ valerrors: res.data.errors });
+  // }
+  // return (window.location = "/");
+});
+
 }
 
 
