@@ -80,8 +80,8 @@ fetch('http://localhost:5000/api/login', {
       }
     
      
-      console.log(data.message);
-      return (window.location = "/");
+      console.log(data);
+      // return (window.location = `/user/${data.user.}`);
     })
   }
   )

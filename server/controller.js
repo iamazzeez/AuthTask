@@ -101,7 +101,7 @@ module.exports = function(app) {
           return res.send({ error: true, message: "Wrong password!" });
         }
         if(!user.isValid){
-          res.send({message: "You are not verified yet"})
+          res.send({error: true, message: "You are not verified yet"})
         }
         req.session.user = user;
         req.session.isLoggedIn = true;
