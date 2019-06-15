@@ -22,7 +22,7 @@ export default class EditDetails extends Component {
 
     componentDidMount() {
         console.log(this.props.match.params.id)
-        fetch('http://localhost:5000/api/getuser/'+this.props.match.params.id, {
+        fetch('https://user-auth-task.herokuapp.com/api/getuser/'+this.props.match.params.id, {
             method: 'GET',
             body: null,
             headers: {
@@ -83,16 +83,16 @@ export default class EditDetails extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.setState({
-            username: this.state.username,
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
-        });
-        // console.log(obj)
+        // this.setState({
+        //     username: this.state.username,
+        //     name: this.state.name,
+        //     email: this.state.email,
+        //     password: this.state.password
+        // });
+        console.log(this.props.match.params.id)
         axios
-        .put(
-          `http://localhost:5000/api/user/${this.props.match.params.id}`, {
+        .post(
+          `https://user-auth-task.herokuapp.com/api/user/${this.props.match.params.id}`, {
             username: this.state.username,
             name: this.state.name,
             email: this.state.email,

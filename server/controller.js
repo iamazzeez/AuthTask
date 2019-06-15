@@ -6,7 +6,7 @@ const session = require("express-session");
 
 module.exports = function(app) {
  
-  app.get("/", (req, res) => res.json("sdasdsa"));
+  
   //---------------------------------------------
   function loginUser(req, res) {
     var errors = validationResult(req);
@@ -50,7 +50,7 @@ module.exports = function(app) {
   //get user
   function getUserDetails(req, res) {
     User.findOne({
-      username: req.body.username
+      username: req.params.id
     })
       .then(function(user) {
     
@@ -61,7 +61,7 @@ module.exports = function(app) {
         console.log(error);
       });
   }
-  app.post("/api/getuser", getUserDetails);
+  app.post("/api/getuser/:id", getUserDetails);
 
 
    //get user to edit
@@ -145,7 +145,7 @@ app.delete("/api/task/:id", function(req, res, next) {
 
 
 // Update Task
-app.put("/api/task/:id", function(req, res, next) {
+app.post("/api/task/:id", function(req, res, next) {
 
     User.updateOne(
       { username: req.params.id},
@@ -161,7 +161,7 @@ app.put("/api/task/:id", function(req, res, next) {
 });
 
 
-app.put("/api/user/:id",  function (req, res) {
+app.post("/api/user/:id",  function (req, res) {
   
   User.findOne({ username: req.params.id }, function(error, doc){
       if(error){

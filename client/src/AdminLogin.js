@@ -57,7 +57,7 @@ class AdminLogin extends Component {
 // .catch(err => {
 //   console.log(err)
 // }) 
-fetch('http://localhost:5000/api/Adminlogin', {
+fetch('https://user-auth-task.herokuapp.com/api/Adminlogin', {
   method: 'POST',
   body: JSON.stringify(loginDetails),
   headers: {

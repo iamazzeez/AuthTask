@@ -57,7 +57,7 @@ class Login extends Component {
 // .catch(err => {
 //   console.log(err)
 // }) 
-fetch('http://localhost:5000/api/login', {
+fetch('https://user-auth-task.herokuapp.com/api/login', {
   method: 'POST',
   body: JSON.stringify(loginDetails),
   headers: {
@@ -81,7 +81,7 @@ fetch('http://localhost:5000/api/login', {
     
      
       console.log(data);
-      return (window.location = `/${data.data.username}`);
+      return (window.location = `user/${data.data.username}`);
       // <Redirect to = `/user/${data.data.username}`/>
     })
   }

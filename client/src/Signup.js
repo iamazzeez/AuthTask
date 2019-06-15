@@ -91,7 +91,7 @@ class Signup extends Component {
         password: this.state.password
         }
        
-fetch('http://localhost:5000/create', {
+fetch('https://user-auth-task.herokuapp.com/create', {
   method: 'POST',
   body: JSON.stringify(requestBody),
   headers: {

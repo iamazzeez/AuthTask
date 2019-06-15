@@ -45,7 +45,7 @@ class App extends Component {
         <Route path="/" exact strict component={Signup} />
         <Route path="/AdminLogin" exact strict component={AdminLogin} />
         <Route path="/UserLogin" exact strict component={Login} />
-        <Route path="/:id" exact strict component={User} />
+        <Route path="/user/:id" exact strict component={User} />
         <Route path="/users/Admin" exact strict component={GetAllusers} />
         <Route path="/edit/:id" exact strict component={EditDetails} />
 

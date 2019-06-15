@@ -13,39 +13,41 @@ export default class User extends Component {
         const id = window.location.pathname
         const id2 = id.split("/")[1]
         const d = { username : id2}
-    fetch('http://localhost:5000/api/getuser', {
-        method: 'POST',
-        body: JSON.stringify(d),
-        headers: {
-          'Content-Type': 'application/json',
-      
-        }
-      })
-      .then(
-        (response) => {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-      
-          // Examine the text in the response
-          response.json().then((data) => {
-            if (data.error) {
-              return this.setState({ error: data.message });
+        fetch('https://user-auth-task.herokuapp.com/api/getuser/'+this.props.match.params.id, {
+            method: 'GET',
+            body: null,
+            headers: {
+              'Content-Type': 'application/json',
+          
             }
+          })
+          .then(
+            (response) => {
+              if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                  response.status);
+                return;
+              }
+          
+              // Examine the text in the response
+              response.json().then((data) => {
+                if (data.error) {
+                  return this.setState({ error: data.message });
+                }
+              
+               console.log(data)
+                  return this.setState({
+                    username: data.data.username,
+                    name: data.data.name,
+                    email: data.data.email,
+                    password: data.data.password
+                  })
+            
+              })
+            }
+            )
           
            
-              return this.setState({
-                username: data.data.username,
-                name: data.data.name,
-                email: data.data.email,
-                password: data.data.password
-              })
-        
-          })
-        }
-        )
     }
 
     render() {
