@@ -105,8 +105,9 @@ export default class EditDetails extends Component {
         .then(function(response) {
           console.log(response);
         });
-
+       
         this.props.history.push('/users/Admin');
+        window.location.reload(); 
     }
 
     render() {
