@@ -69,11 +69,11 @@ export default class GetAllusers extends Component {
     render() {
        
             return (
-            <div className='row container my-4 '>
+            <div className='row  m-1 '>
                     {Object.values(this.state.data).map(user => (   
                 
                     
-                    <div className="col-md-4.6 m-2">
+                    <div className="col-md-4.6 m-1">
                 <div class="card">
 <div class="card-body">
 <h4 class="card-title">{user.name}</h4>

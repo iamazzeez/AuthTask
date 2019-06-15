@@ -3,88 +3,11 @@ var { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcrypt");
 const User = require('./schema/users');
 const session = require("express-session");
-// const Post = require("./models/Post");
+
 module.exports = function(app) {
-  const regValidation = [
-    check("email")
-      .not()
-      .isEmpty()
-      .withMessage("Email is required")
-      .isEmail()
-      .withMessage("Email should be an email address"),
-    check("firstname")
-      .not()
-      .isEmpty()
-      .withMessage("First name is required")
-      .isLength({ min: 2 })
-      .withMessage("Name should be at least 2 letters")
-      .matches(/^([A-z]|\s)+$/)
-      .withMessage("Name cannot have numbers"),
-    check("lastname")
-      .not()
-      .isEmpty()
-      .withMessage("Last name is required")
-      .isLength({ min: 2 })
-      .withMessage("Last name should be at least 2 letters"),
-    check("username")
-      .not()
-      .isEmpty()
-      .withMessage("Username is required")
-      .isLength({ min: 2 })
-      .withMessage("Username should be at least 2 letters"),
-    check("password")
-      .not()
-      .isEmpty()
-      .withMessage("Password is required")
-      .isLength({ min: 2 })
-      .withMessage("Password should be at least 6 characters"),
-    check(
-      "password_con",
-      "Password confirmation  is required or should be the same as password"
-    ).custom(function(value, { req }) {
-      if (value !== req.body.password) {
-        throw new Error("Password don't match");
-      }
-      return value;
-    }),
-    check("email").custom(value => {
-      return User.findOne({ email: value }).then(function(user) {
-        if (user) {
-          throw new Error("This email is already in use");
-        }
-      });
-    })
-  ];
-
-  function register(req, res) {
-    var errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.send({ errors: errors.mapped() });
-    }
-    var user = new User(req.body);
-    user.password = user.hashPassword(user.password);
-    user
-      .save()
-      .then(user => {
-        return res.json(user);
-      })
-      .catch(err => res.send(err));
-  }
-
-  app.post("/api/register", regValidation, register);
+ 
   app.get("/", (req, res) => res.json("sdasdsa"));
   //---------------------------------------------
-  const logValidation = [
-    check("email")
-      .not()
-      .isEmpty()
-      .withMessage("Email is required"),
-    check("password")
-      .not()
-      .isEmpty()
-      .withMessage("Password is required")
-  ];
   function loginUser(req, res) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -141,7 +64,7 @@ module.exports = function(app) {
   app.post("/api/getuser", getUserDetails);
 
 
-   //get user
+   //get user to edit
    function getUserDetails(req, res) {
     User.findOne({
       username: req.params.id
@@ -223,23 +146,7 @@ app.delete("/api/task/:id", function(req, res, next) {
 
 // Update Task
 app.put("/api/task/:id", function(req, res, next) {
-  // var task = req.body;
-  // var updTask = {};
 
-  // if (task.isDone) {
-  //   updTask.isDone = task.isDone;
-  // }
-
-  // if (task.title) {
-  //   updTask.title = task.title;
-  // }
-
-  // if (!updTask) {
-  //   res.status(400);
-  //   res.json({
-  //     error: "Bad Data"
-  //   });
-  // } else {
     User.updateOne(
       { username: req.params.id},
       req.body,
@@ -251,25 +158,7 @@ app.put("/api/task/:id", function(req, res, next) {
         res.json(task);
       }
     );
-  // }
 });
-
-// // Update User details
-// app.put("/api/user/:id", function(req, res, next) {
-
-//     User.updateMany(
-//       { username: req.params.id},
-//       req.body,
-//       {},
-//       function(err, task) {
-//         if (err) {
-//           res.send(err);
-//         }
-//         res.json(task);
-//       }
-//     );
-//   // }
-// });
 
 
 app.put("/api/user/:id",  function (req, res) {

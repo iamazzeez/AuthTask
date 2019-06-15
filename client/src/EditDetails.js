@@ -107,7 +107,7 @@ export default class EditDetails extends Component {
         });
        
         this.props.history.push('/users/Admin');
-        window.location.reload(); 
+         window.location.reload(); 
     }
 
     render() {
