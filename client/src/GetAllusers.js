@@ -13,7 +13,7 @@ export default class GetAllusers extends Component {
 
 
     getAll = () => {
-        fetch('https://user-auth-task.herokuapp.com/api/showusers', {
+        fetch('http://localhost:5000/api/showusers', {
             method: 'GET',
             body: null,
             headers: {
