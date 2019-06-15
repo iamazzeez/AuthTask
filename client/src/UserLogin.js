@@ -61,7 +61,7 @@ fetch('http://localhost:5000/api/login', {
      
       console.log(data);
       return (window.location = `/${data.data.username}`);
-      // <Redirect to = `/user/${data.data.username}`/>
+     
     })
   }
   )
