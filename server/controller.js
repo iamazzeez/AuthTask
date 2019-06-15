@@ -140,6 +140,22 @@ module.exports = function(app) {
   }
   app.post("/api/getuser", getUserDetails);
 
+
+   //get user
+   function getUserDetails(req, res) {
+    User.findOne({
+      username: req.params.id
+    })
+      .then(function(user) {
+    
+        return res.send({ message: "You are signed in", data: user });
+        res.send(user);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  app.get("/api/getuser/:id", getUserDetails);
    //------------------------------------------------------
    function showUsers(req, res) {
     User.find()
@@ -237,5 +253,56 @@ app.put("/api/task/:id", function(req, res, next) {
     );
   // }
 });
+
+// // Update User details
+// app.put("/api/user/:id", function(req, res, next) {
+
+//     User.updateMany(
+//       { username: req.params.id},
+//       req.body,
+//       {},
+//       function(err, task) {
+//         if (err) {
+//           res.send(err);
+//         }
+//         res.json(task);
+//       }
+//     );
+//   // }
+// });
+
+
+app.put("/api/user/:id",  function (req, res) {
+  
+  User.findOne({ username: req.params.id }, function(error, doc){
+      if(error){
+          res.send(error)
+      } else {
+          if(req.body.password){
+             doc.password = req.body.password;
+          }
+          if(req.body.name){
+              doc.name = req.body.name
+          }
+          if(req.body.username){
+            doc.username = req.body.username
+        }
+        if(req.body.username){
+          doc.email = req.body.email
+      }
+      }
+
+     doc.save(function(err, updateObject){
+         if(err){
+           return  res.send(err)
+         } else {
+          return   res.send(updateObject)
+         }
+     });
+ })
+
+
+})
+
 };
 

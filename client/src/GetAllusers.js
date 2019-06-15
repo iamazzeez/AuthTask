@@ -95,13 +95,8 @@ export default class GetAllusers extends Component {
                 >
                 Delete
                 </button>
-                <button
-                href=""
-                className="btn btn-info"
-                onClick={this.onDelete.bind(this, user.username)}
-                >
-                Edit
-                </button>
+                <Link  className="btn btn-info " to= {`/edit/${user.username}`} >Edit</Link>
+                
 </div>
 </div>
                

@@ -6,6 +6,7 @@ import Login from './UserLogin';
 import AdminLogin from "./AdminLogin";
 import User from "./User";
 import GetAllusers from './GetAllusers';
+import EditDetails from './EditDetails';
 
 
 class App extends Component {
@@ -46,6 +47,8 @@ class App extends Component {
         <Route path="/UserLogin" exact strict component={Login} />
         <Route path="/:id" exact strict component={User} />
         <Route path="/users/Admin" exact strict component={GetAllusers} />
+        <Route path="/edit/:id" exact strict component={EditDetails} />
+
         </Switch>
   </div>
       </Router>
