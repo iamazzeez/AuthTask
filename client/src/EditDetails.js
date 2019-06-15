@@ -91,7 +91,11 @@ export default class EditDetails extends Component {
         // });
         console.log(this.props.match.params.id)
         axios
+<<<<<<< HEAD
         .post(
+=======
+        .put(
+>>>>>>> b1a1be95c82636b804defeeca254e965f96d4f97
           `https://user-auth-task.herokuapp.com/api/user/${this.props.match.params.id}`, {
             username: this.state.username,
             name: this.state.name,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { getList, addToList, deleteItem, updateItem } from "./AdminFunctions";
+import { deleteItem, updateItem } from "./AdminFunctions";
 export default class GetAllusers extends Component {
     state = {
     data: ''
@@ -69,12 +69,12 @@ export default class GetAllusers extends Component {
     render() {
        
             return (
-            <div className='row  m-1 '>
-                    {Object.values(this.state.data).map(user => (   
-                
-                    
-                    <div className="col-md-4.6 m-1">
-                <div class="card">
+<div className='row  m-1 '>
+        {Object.values(this.state.data).map(user => (   
+    
+        
+        <div className="col-md-4.6 m-1">
+    <div class="card">
 <div class="card-body">
 <h4 class="card-title">{user.name}</h4>
 <p class="card-text">Username: {user.username}</p>
@@ -82,34 +82,34 @@ export default class GetAllusers extends Component {
 <p class="card-text">Password: {user.password}</p>
 <p class="card-text">Validated: {`${user.isValid}`}</p>
 <button
-                href=""
-                className="btn btn-warning"
-                onClick={this.onUpdate.bind(this, user.username)}
-                >
-                Validate
-                </button>
+    href=""
+    className="btn btn-warning"
+    onClick={this.onUpdate.bind(this, user.username)}
+    >
+    Validate
+    </button>
 <button
-                href=""
-                className="btn btn-danger"
-                onClick={this.onDelete.bind(this, user.username)}
-                >
-                Delete
-                </button>
-                <Link  className="btn btn-info " to= {`/edit/${user.username}`} >Edit</Link>
-                
+    href=""
+    className="btn btn-danger"
+    onClick={this.onDelete.bind(this, user.username)}
+    >
+    Delete
+    </button>
+    <Link  className="btn btn-info " to= {`/edit/${user.username}`} >Edit</Link>
+    
 </div>
 </div>
-               
-                </div>
-                
-                ))}
-                <div className= 'container' style={{maxWidth: '25rem'}}>
-                    <br />
-                    <Link  className="btn btn-primary " to="/AdminLogin">Logout</Link>
-                    </div>
-            </div>
-        )
-        
+    
+    </div>
+    
+    ))}
+    <div className= 'container' style={{maxWidth: '25rem'}}>
+        <br />
+        <Link  className="btn btn-primary " to="/AdminLogin">Logout</Link>
+        </div>
+</div>
+)
+
          
        
     

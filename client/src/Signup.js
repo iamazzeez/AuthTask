@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from './FormValidator';
-import {Link, Prompt} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Signup extends Component {
   constructor() {
