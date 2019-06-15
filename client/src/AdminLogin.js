@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+
 
 class AdminLogin extends Component {
   constructor(props){
@@ -36,27 +35,6 @@ class AdminLogin extends Component {
     email: email,
   }
 
- 
-// fetch('http://localhost:5000/get', {
-//   method: 'GET',
-//   body: JSON.stringify(requestBody),
-//   headers: {
-//     'Content-Type': 'application/json',
-
-//   }
-// }).then(res => {
-//   if(res.status !== 200 && res.status !== 201){
-//     throw new Error('Failed!')
-//   }
-//   res.json();
-    
-// }).then(resData => {
-//   console.log(resData);
-// })
-
-// .catch(err => {
-//   console.log(err)
-// }) 
 fetch('http://localhost:5000/api/Adminlogin', {
   method: 'POST',
   body: JSON.stringify(loginDetails),

@@ -40,7 +40,7 @@ class App extends Component {
         </div>
         </nav>
       
-        {/* <input type="button" value={this.state.loggedIn ? 'log out': 'log in'} onClick={this.loginHandle.bind(this)}/> */}
+  
       <Switch>
         <Route path="/" exact strict component={Signup} />
         <Route path="/AdminLogin" exact strict component={AdminLogin} />
