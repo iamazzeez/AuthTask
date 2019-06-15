@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { getList, addToList, deleteItem, updateItem } from "./AdminFunctions";
+import { deleteItem, updateItem } from "./AdminFunctions";
 export default class GetAllusers extends Component {
     state = {
     data: ''
@@ -13,7 +13,7 @@ export default class GetAllusers extends Component {
 
 
     getAll = () => {
-        fetch('http://localhost:5000/api/showusers', {
+        fetch('https://user-auth-task.herokuapp.com/api/showusers', {
             method: 'GET',
             body: null,
             headers: {

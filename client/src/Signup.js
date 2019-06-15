@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from './FormValidator';
-import {Link, Prompt} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Signup extends Component {
   constructor() {
@@ -91,7 +91,7 @@ class Signup extends Component {
         password: this.state.password
         }
        
-fetch('http://localhost:5000/create', {
+fetch('https://user-auth-task.herokuapp.com/create', {
   method: 'POST',
   body: JSON.stringify(requestBody),
   headers: {

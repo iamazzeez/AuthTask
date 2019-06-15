@@ -13,7 +13,7 @@ export default class User extends Component {
         const id = window.location.pathname
         const id2 = id.split("/")[1]
         const d = { username : id2}
-    fetch('http://localhost:5000/api/getuser', {
+    fetch('https://user-auth-task.herokuapp.com/api/getuser', {
         method: 'POST',
         body: JSON.stringify(d),
         headers: {

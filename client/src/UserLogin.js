@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import {Redirect} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
@@ -36,7 +34,7 @@ class Login extends Component {
     email: email,
   }
 
-fetch('http://localhost:5000/api/login', {
+fetch('https://user-auth-task.herokuapp.com/api/login', {
   method: 'POST',
   body: JSON.stringify(loginDetails),
   headers: {
