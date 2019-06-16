@@ -6,11 +6,7 @@ const session = require("express-session");
 
 module.exports = function(app) {
  
-<<<<<<< HEAD
   
-=======
- 
->>>>>>> b1a1be95c82636b804defeeca254e965f96d4f97
   //---------------------------------------------
   function loginUser(req, res) {
     var errors = validationResult(req);
