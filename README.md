@@ -7,21 +7,21 @@ Click this link to see demo of client application [View Demo](https://user-admin
 
 ## To run locally 
 
-```node
+```bash
 git clone https://github.com/Abdul-Az/AuthTask.git
-
+```
 ## To run client
 
-```node
+```bash
 cd client 
 npm install
 npm start
-
+```
 ## To run server
 
-```node
+```bash
 cd server 
 npm install
 npm start
-
-#Run server and client in different terminals.
+```
+# Run server and client in different terminals.
