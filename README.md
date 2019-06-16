@@ -5,7 +5,7 @@
 Click this link to see demo of client application [View Demo](https://user-admin-task-client.herokuapp.com/).
 
 
-## To run locally 
+## Clone  
 
 ```bash
 git clone https://github.com/Abdul-Az/AuthTask.git
